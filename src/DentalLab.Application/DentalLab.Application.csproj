@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\DentalLab.Domain\DentalLab.Domain.csproj" />
+    <ProjectReference Include="..\DentalLab.Shared\DentalLab.Shared.csproj" />
+    <PackageReference Include="FluentValidation" Version="12.*" />
+  </ItemGroup>
+</Project>

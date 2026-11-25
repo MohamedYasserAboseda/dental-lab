@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App_Name" xml:space="preserve"><value>Dental Lab Management System</value></data>
+  <data name="App_ShortName" xml:space="preserve"><value>Dental Lab</value></data>
+  <data name="Splash_Tagline" xml:space="preserve"><value>Premium laboratory management</value></data>
+  <data name="Splash_Loading" xml:space="preserve"><value>Preparing your workspace…</value></data>
+  <data name="Nav_Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Nav_Doctors" xml:space="preserve"><value>Doctors</value></data>
+  <data name="Nav_Patients" xml:space="preserve"><value>Patients</value></data>
+  <data name="Nav_Cases" xml:space="preserve"><value>Cases</value></data>
+  <data name="Nav_Workflow" xml:space="preserve"><value>Production Workflow</value></data>
+  <data name="Nav_Invoices" xml:space="preserve"><value>Invoices</value></data>
+  <data name="Nav_Payments" xml:space="preserve"><value>Payments</value></data>
+  <data name="Nav_DoctorAccounts" xml:space="preserve"><value>Doctor Accounts</value></data>
+  <data name="Nav_Inventory" xml:space="preserve"><value>Inventory</value></data>
+  <data name="Nav_Suppliers" xml:space="preserve"><value>Suppliers</value></data>
+  <data name="Nav_Expenses" xml:space="preserve"><value>Expenses</value></data>
+  <data name="Nav_Reports" xml:space="preserve"><value>Reports</value></data>
+  <data name="Nav_Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Nav_Backup" xml:space="preserve"><value>Backup &amp; Restore</value></data>
+  <data name="Top_Search" xml:space="preserve"><value>Search doctors, patients, cases…</value></data>
+  <data name="Tip_ToggleSidebar" xml:space="preserve"><value>Toggle sidebar</value></data>
+  <data name="Tip_Theme" xml:space="preserve"><value>Switch theme</value></data>
+  <data name="Tip_Language" xml:space="preserve"><value>Switch language</value></data>
+  <data name="Tip_Notifications" xml:space="preserve"><value>Notifications</value></data>
+  <data name="Tip_Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Placeholder_Desc" xml:space="preserve"><value>This module is being built in an upcoming milestone.</value></data>
+  <data name="Doctors_Add" xml:space="preserve"><value>Add doctor</value></data>
+  <data name="Doctors_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Doctors_Search" xml:space="preserve"><value>Search by name, clinic, phone or ID…</value></data>
+  <data name="Doctors_Empty" xml:space="preserve"><value>No doctors yet. Add your first doctor to get started.</value></data>
+  <data name="Doctors_NoResults" xml:space="preserve"><value>No doctors match your search.</value></data>
+  <data name="Filter_All" xml:space="preserve"><value>All</value></data>
+  <data name="Filter_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Filter_Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Col_Code" xml:space="preserve"><value>ID</value></data>
+  <data name="Col_Name" xml:space="preserve"><value>Doctor</value></data>
+  <data name="Col_Clinic" xml:space="preserve"><value>Clinic</value></data>
+  <data name="Col_Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Col_Balance" xml:space="preserve"><value>Balance</value></data>
+  <data name="Col_Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Col_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Col_Type" xml:space="preserve"><value>Type</value></data>
+  <data name="Col_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Col_Debit" xml:space="preserve"><value>Debit</value></data>
+  <data name="Col_Credit" xml:space="preserve"><value>Credit</value></data>
+  <data name="Col_RunningBalance" xml:space="preserve"><value>Balance</value></data>
+  <data name="Page_Of" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Field_FullName" xml:space="preserve"><value>Full name</value></data>
+  <data name="Field_Clinic" xml:space="preserve"><value>Clinic name</value></data>
+  <data name="Field_Phone" xml:space="preserve"><value>Phone number</value></data>
+  <data name="Field_Email" xml:space="preserve"><value>Email (optional)</value></data>
+  <data name="Field_Address" xml:space="preserve"><value>Address</value></data>
+  <data name="Field_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="Field_OpeningBalance" xml:space="preserve"><value>Opening balance</value></data>
+  <data name="Field_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Editor_AddTitle" xml:space="preserve"><value>New doctor</value></data>
+  <data name="Editor_EditTitle" xml:space="preserve"><value>Edit doctor</value></data>
+  <data name="Editor_OpeningBalanceHint" xml:space="preserve"><value>Positive = the doctor owes the lab, negative = credit. It cannot be edited after saving; use an adjustment instead.</value></data>
+  <data name="Common_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Common_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="Profile_Balance" xml:space="preserve"><value>Current balance</value></data>
+  <data name="Profile_BalanceHint" xml:space="preserve"><value>Positive = the doctor owes the lab. Negative = credit in the doctor's favour.</value></data>
+  <data name="Profile_Registered" xml:space="preserve"><value>Registered on</value></data>
+  <data name="Profile_Statement" xml:space="preserve"><value>Financial statement</value></data>
+  <data name="Profile_StatementEmpty" xml:space="preserve"><value>No transactions yet.</value></data>
+  <data name="Profile_Deactivate" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="Profile_Activate" xml:space="preserve"><value>Activate</value></data>
+  <data name="Profile_LaterNote" xml:space="preserve"><value>Cases, invoices and payments will appear in this statement as those modules are added.</value></data>
+  <data name="Ledger_OpeningBalance" xml:space="preserve"><value>Opening balance</value></data>
+  <data name="Ledger_Charge" xml:space="preserve"><value>Charge</value></data>
+  <data name="Ledger_Payment" xml:space="preserve"><value>Payment</value></data>
+  <data name="Ledger_Adjustment" xml:space="preserve"><value>Adjustment</value></data>
+  <data name="Ledger_Reversal" xml:space="preserve"><value>Reversal</value></data>
+  <data name="Val_NameRequired" xml:space="preserve"><value>Doctor name is required.</value></data>
+  <data name="Val_NameTooLong" xml:space="preserve"><value>Name is too long (max 150 characters).</value></data>
+  <data name="Val_EmailInvalid" xml:space="preserve"><value>Email address is not valid.</value></data>
+  <data name="Val_PhoneInvalid" xml:space="preserve"><value>Phone number is not valid.</value></data>
+  <data name="Val_BalanceRange" xml:space="preserve"><value>Opening balance is out of the allowed range.</value></data>
+  <data name="Val_BalanceInvalid" xml:space="preserve"><value>Opening balance must be a valid number.</value></data>
+  <data name="Error_Generic" xml:space="preserve"><value>Something went wrong. Please try again.</value></data>
+  <data name="Patient_AddTitle" xml:space="preserve"><value>New patient</value></data>
+  <data name="Patient_EditTitle" xml:space="preserve"><value>Edit patient</value></data>
+  <data name="Patients_Add" xml:space="preserve"><value>Add patient</value></data>
+  <data name="Patients_Search" xml:space="preserve"><value>Search by patient name or code…</value></data>
+  <data name="Patients_Empty" xml:space="preserve"><value>No patients yet. Add your first patient.</value></data>
+  <data name="Patients_NoResults" xml:space="preserve"><value>No patients match your search.</value></data>
+  <data name="Filter_AllDoctors" xml:space="preserve"><value>All doctors</value></data>
+  <data name="Filter_AllStatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="Field_Doctor" xml:space="preserve"><value>Doctor</value></data>
+  <data name="Field_Patient" xml:space="preserve"><value>Patient</value></data>
+  <data name="Field_PatientCode" xml:space="preserve"><value>Patient code (optional)</value></data>
+  <data name="Col_Cases" xml:space="preserve"><value>Cases</value></data>
+  <data name="Col_Patient" xml:space="preserve"><value>Patient</value></data>
+  <data name="Settings_Appearance" xml:space="preserve"><value>Appearance &amp; motion</value></data>
+  <data name="Settings_ReduceMotion" xml:space="preserve"><value>Reduce motion</value></data>
+  <data name="Settings_ReduceMotionHint" xml:space="preserve"><value>Turns off animations (the app also follows Windows' animation setting).</value></data>
+  <data name="Settings_Catalog" xml:space="preserve"><value>Price list &amp; materials</value></data>
+  <data name="Catalog_Types" xml:space="preserve"><value>Restoration types</value></data>
+  <data name="Catalog_Materials" xml:space="preserve"><value>Materials</value></data>
+  <data name="Catalog_Add" xml:space="preserve"><value>Add</value></data>
+  <data name="Catalog_AddType" xml:space="preserve"><value>New restoration type</value></data>
+  <data name="Catalog_EditType" xml:space="preserve"><value>Edit restoration type</value></data>
+  <data name="Catalog_AddMaterial" xml:space="preserve"><value>New material</value></data>
+  <data name="Catalog_EditMaterial" xml:space="preserve"><value>Edit material</value></data>
+  <data name="Catalog_PriceHint" xml:space="preserve"><value>Prices start at 0: set your own. Doctor-specific prices are set from the doctor's profile.</value></data>
+  <data name="Field_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Field_NameAr" xml:space="preserve"><value>Arabic name</value></data>
+  <data name="Field_DefaultPrice" xml:space="preserve"><value>Default unit price</value></data>
+  <data name="Col_NameAr" xml:space="preserve"><value>Arabic name</value></data>
+  <data name="Col_Price" xml:space="preserve"><value>Default price</value></data>
+  <data name="Doctors_Prices" xml:space="preserve"><value>Prices</value></data>
+  <data name="Prices_Title" xml:space="preserve"><value>Doctor prices</value></data>
+  <data name="Prices_Hint" xml:space="preserve"><value>Leave a price empty to use the default price.</value></data>
+  <data name="Col_DoctorPrice" xml:space="preserve"><value>Doctor's price</value></data>
+  <data name="Cases_Add" xml:space="preserve"><value>New case</value></data>
+  <data name="Cases_Search" xml:space="preserve"><value>Search by case number or patient…</value></data>
+  <data name="Cases_Empty" xml:space="preserve"><value>No cases yet. Create your first case.</value></data>
+  <data name="Cases_NoResults" xml:space="preserve"><value>No cases match your filters.</value></data>
+  <data name="Cases_OverdueOnly" xml:space="preserve"><value>Overdue only</value></data>
+  <data name="Case_NewTitle" xml:space="preserve"><value>New case</value></data>
+  <data name="Case_EditTitle" xml:space="preserve"><value>Edit case</value></data>
+  <data name="Col_CaseNumber" xml:space="preserve"><value>Case #</value></data>
+  <data name="Col_Restoration" xml:space="preserve"><value>Restoration</value></data>
+  <data name="Col_Teeth" xml:space="preserve"><value>Teeth</value></data>
+  <data name="Col_Expected" xml:space="preserve"><value>Expected delivery</value></data>
+  <data name="Col_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Field_Restoration" xml:space="preserve"><value>Restoration type</value></data>
+  <data name="Field_Material" xml:space="preserve"><value>Material</value></data>
+  <data name="Field_Shade" xml:space="preserve"><value>Shade</value></data>
+  <data name="Field_Quantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="Field_UnitPrice" xml:space="preserve"><value>Unit price</value></data>
+  <data name="Field_Discount" xml:space="preserve"><value>Discount</value></data>
+  <data name="Field_ExpectedDate" xml:space="preserve"><value>Expected delivery (yyyy-MM-dd)</value></data>
+  <data name="Field_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Period_All" xml:space="preserve"><value>Any time</value></data>
+  <data name="Period_Today" xml:space="preserve"><value>Today</value></data>
+  <data name="Period_Last7Days" xml:space="preserve"><value>Last 7 days</value></data>
+  <data name="Period_ThisMonth" xml:space="preserve"><value>This month</value></data>
+  <data name="Status_Received" xml:space="preserve"><value>Received</value></data>
+  <data name="Status_Designing" xml:space="preserve"><value>Designing</value></data>
+  <data name="Status_Production" xml:space="preserve"><value>Production</value></data>
+  <data name="Status_Finishing" xml:space="preserve"><value>Finishing</value></data>
+  <data name="Status_QualityControl" xml:space="preserve"><value>Quality control</value></data>
+  <data name="Status_Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="Status_Delivered" xml:space="preserve"><value>Delivered</value></data>
+  <data name="Status_Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Details_Info" xml:space="preserve"><value>Case details</value></data>
+  <data name="Details_Financial" xml:space="preserve"><value>Pricing</value></data>
+  <data name="Details_History" xml:space="preserve"><value>Status history</value></data>
+  <data name="Details_MoveTo" xml:space="preserve"><value>Move to:</value></data>
+  <data name="Details_NoteHint" xml:space="preserve"><value>Optional note for the next status change</value></data>
+  <data name="Details_Cancelled" xml:space="preserve"><value>This case was cancelled.</value></data>
+  <data name="Details_Overdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Details_Received" xml:space="preserve"><value>Received on</value></data>
+  <data name="Details_Delivered" xml:space="preserve"><value>Delivered on</value></data>
+  <data name="Details_Subtotal" xml:space="preserve"><value>Subtotal</value></data>
+  <data name="Chart_Clear" xml:space="preserve"><value>Clear</value></data>
+  <data name="Chart_NoSelection" xml:space="preserve"><value>Click teeth to select them</value></data>
+  <data name="Chart_SelectedCount" xml:space="preserve"><value>{0} selected</value></data>
+  <data name="Dentition_Permanent" xml:space="preserve"><value>Permanent</value></data>
+  <data name="Dentition_Primary" xml:space="preserve"><value>Primary</value></data>
+  <data name="Tooth_CentralIncisor" xml:space="preserve"><value>Central incisor</value></data>
+  <data name="Tooth_LateralIncisor" xml:space="preserve"><value>Lateral incisor</value></data>
+  <data name="Tooth_Canine" xml:space="preserve"><value>Canine</value></data>
+  <data name="Tooth_FirstPremolar" xml:space="preserve"><value>First premolar</value></data>
+  <data name="Tooth_SecondPremolar" xml:space="preserve"><value>Second premolar</value></data>
+  <data name="Tooth_FirstMolar" xml:space="preserve"><value>First molar</value></data>
+  <data name="Tooth_SecondMolar" xml:space="preserve"><value>Second molar</value></data>
+  <data name="Tooth_ThirdMolar" xml:space="preserve"><value>Third molar (wisdom)</value></data>
+  <data name="Quad_UpperRight" xml:space="preserve"><value>Upper right</value></data>
+  <data name="Quad_UpperLeft" xml:space="preserve"><value>Upper left</value></data>
+  <data name="Quad_LowerLeft" xml:space="preserve"><value>Lower left</value></data>
+  <data name="Quad_LowerRight" xml:space="preserve"><value>Lower right</value></data>
+  <data name="ToothType_Incisor" xml:space="preserve"><value>Incisor</value></data>
+  <data name="ToothType_Canine" xml:space="preserve"><value>Canine</value></data>
+  <data name="ToothType_Premolar" xml:space="preserve"><value>Premolar</value></data>
+  <data name="ToothType_Molar" xml:space="preserve"><value>Molar</value></data>
+  <data name="Val_DoctorRequired" xml:space="preserve"><value>Please choose a doctor.</value></data>
+  <data name="Val_PatientRequired" xml:space="preserve"><value>Please choose a patient.</value></data>
+  <data name="Val_TypeRequired" xml:space="preserve"><value>Please choose a restoration type.</value></data>
+  <data name="Val_QuantityRange" xml:space="preserve"><value>Quantity must be between 1 and 999.</value></data>
+  <data name="Val_PriceRange" xml:space="preserve"><value>Price is out of the allowed range.</value></data>
+  <data name="Val_DiscountInvalid" xml:space="preserve"><value>Discount must be between 0 and the subtotal.</value></data>
+  <data name="Val_DateRequired" xml:space="preserve"><value>Expected delivery date is required.</value></data>
+  <data name="Val_TeethInvalid" xml:space="preserve"><value>One of the selected teeth is not valid.</value></data>
+  <data name="Val_ShadeTooLong" xml:space="preserve"><value>Shade is too long.</value></data>
+  <data name="Val_NotesTooLong" xml:space="preserve"><value>Notes are too long.</value></data>
+  <data name="Val_PatientMismatch" xml:space="preserve"><value>This patient belongs to another doctor.</value></data>
+  <data name="Val_MaterialInvalid" xml:space="preserve"><value>The selected material does not exist.</value></data>
+  <data name="Val_NotEditable" xml:space="preserve"><value>Delivered or cancelled cases cannot be edited.</value></data>
+  <data name="Val_InvalidTransition" xml:space="preserve"><value>This status change is not allowed.</value></data>
+  <data name="Val_DuplicateName" xml:space="preserve"><value>This name already exists.</value></data>
+  <data name="Val_PatientHasCases" xml:space="preserve"><value>A patient with cases cannot be moved to another doctor.</value></data>
+  <data name="Val_CodeTooLong" xml:space="preserve"><value>Code is too long (max 30).</value></data>
+  <data name="Val_NumberInvalid" xml:space="preserve"><value>Please enter valid numbers.</value></data>
+  <data name="Val_DateInvalid" xml:space="preserve"><value>Date must look like 2026-05-31.</value></data>
+  <data name="Invoices_Add" xml:space="preserve"><value>New invoice</value></data>
+  <data name="Invoices_Search" xml:space="preserve"><value>Search by invoice number or doctor…</value></data>
+  <data name="Invoices_Empty" xml:space="preserve"><value>No invoices yet.</value></data>
+  <data name="Invoices_NoResults" xml:space="preserve"><value>No invoices match your filters.</value></data>
+  <data name="InvStatus_Unpaid" xml:space="preserve"><value>Unpaid</value></data>
+  <data name="InvStatus_PartiallyPaid" xml:space="preserve"><value>Partially paid</value></data>
+  <data name="InvStatus_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="InvStatus_Voided" xml:space="preserve"><value>Voided</value></data>
+  <data name="Col_Invoice" xml:space="preserve"><value>Invoice #</value></data>
+  <data name="Col_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="Col_Remaining" xml:space="preserve"><value>Remaining</value></data>
+  <data name="Col_Selected" xml:space="preserve"><value>Select</value></data>
+  <data name="Col_Receipt" xml:space="preserve"><value>Receipt #</value></data>
+  <data name="Col_Method" xml:space="preserve"><value>Method</value></data>
+  <data name="Col_Amount" xml:space="preserve"><value>Amount</value></data>
+  <data name="Invoice_NewTitle" xml:space="preserve"><value>New invoice</value></data>
+  <data name="Invoice_From" xml:space="preserve"><value>From (yyyy-MM-dd)</value></data>
+  <data name="Invoice_To" xml:space="preserve"><value>To (yyyy-MM-dd)</value></data>
+  <data name="Invoice_LoadCases" xml:space="preserve"><value>Load cases</value></data>
+  <data name="Invoice_SelectAll" xml:space="preserve"><value>Select all</value></data>
+  <data name="Invoice_NoUnbilled" xml:space="preserve"><value>No unbilled cases for this doctor and period.</value></data>
+  <data name="Invoice_Description" xml:space="preserve"><value>Description (optional)</value></data>
+  <data name="Invoice_Create" xml:space="preserve"><value>Create invoice</value></data>
+  <data name="Invoice_Lines" xml:space="preserve"><value>Invoiced cases</value></data>
+  <data name="Invoice_Payments" xml:space="preserve"><value>Payments</value></data>
+  <data name="Invoice_RecordPayment" xml:space="preserve"><value>Record payment</value></data>
+  <data name="Invoice_Void" xml:space="preserve"><value>Void invoice</value></data>
+  <data name="Invoice_VoidReason" xml:space="preserve"><value>Reason (optional)</value></data>
+  <data name="Invoice_Confirm" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Invoice_VoidedInfo" xml:space="preserve"><value>This invoice was voided. Its charge was reversed in the doctor's account.</value></data>
+  <data name="Invoice_ReversePayment" xml:space="preserve"><value>Reverse</value></data>
+  <data name="Invoice_Reversed" xml:space="preserve"><value>Reversed</value></data>
+  <data name="Details_Invoiced" xml:space="preserve"><value>Invoiced</value></data>
+  <data name="Details_CreateInvoice" xml:space="preserve"><value>Create invoice</value></data>
+  <data name="Payments_Add" xml:space="preserve"><value>Record payment</value></data>
+  <data name="Payments_Search" xml:space="preserve"><value>Search by receipt number or doctor…</value></data>
+  <data name="Payments_Empty" xml:space="preserve"><value>No payments yet.</value></data>
+  <data name="Payments_NoResults" xml:space="preserve"><value>No payments match your search.</value></data>
+  <data name="Payments_ReverseTitle" xml:space="preserve"><value>Reverse payment</value></data>
+  <data name="Payments_ReverseHint" xml:space="preserve"><value>Nothing is deleted: the original entry stays in the history and a reversing entry is added to the doctor's account.</value></data>
+  <data name="Payment_Title" xml:space="preserve"><value>Record payment</value></data>
+  <data name="Payment_OnAccount" xml:space="preserve"><value>— On account (no invoice) —</value></data>
+  <data name="Field_Invoice" xml:space="preserve"><value>Invoice</value></data>
+  <data name="Field_Amount" xml:space="preserve"><value>Amount</value></data>
+  <data name="Field_Method" xml:space="preserve"><value>Payment method</value></data>
+  <data name="Field_Date" xml:space="preserve"><value>Date (yyyy-MM-dd)</value></data>
+  <data name="Field_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Method_Cash" xml:space="preserve"><value>Cash</value></data>
+  <data name="Method_Card" xml:space="preserve"><value>Card</value></data>
+  <data name="Method_BankTransfer" xml:space="preserve"><value>Bank transfer</value></data>
+  <data name="Method_Cheque" xml:space="preserve"><value>Cheque</value></data>
+  <data name="Method_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Accounts_Search" xml:space="preserve"><value>Search doctors…</value></data>
+  <data name="Accounts_Outstanding" xml:space="preserve"><value>Total outstanding</value></data>
+  <data name="Accounts_Credit" xml:space="preserve"><value>Total credit</value></data>
+  <data name="Accounts_OutstandingOnly" xml:space="preserve"><value>Only doctors with a balance</value></data>
+  <data name="Accounts_Select" xml:space="preserve"><value>Select a doctor to see the account statement.</value></data>
+  <data name="Accounts_AddAdjustment" xml:space="preserve"><value>Add adjustment</value></data>
+  <data name="Adjust_Title" xml:space="preserve"><value>Adjustment</value></data>
+  <data name="Adjust_Hint" xml:space="preserve"><value>Positive increases what the doctor owes, negative reduces it. A description is required and the entry can never be edited afterwards.</value></data>
+  <data name="Val_CasesRequired" xml:space="preserve"><value>Select at least one case.</value></data>
+  <data name="Val_CaseNotFound" xml:space="preserve"><value>A selected case was not found for this doctor.</value></data>
+  <data name="Val_AlreadyInvoiced" xml:space="preserve"><value>One of the cases is already invoiced.</value></data>
+  <data name="Val_CaseCancelled" xml:space="preserve"><value>A cancelled case cannot be invoiced.</value></data>
+  <data name="Val_InvoiceTotalInvalid" xml:space="preserve"><value>The invoice total must be greater than zero (check the case prices).</value></data>
+  <data name="Val_AmountInvalid" xml:space="preserve"><value>Enter a valid amount.</value></data>
+  <data name="Val_MethodInvalid" xml:space="preserve"><value>Choose a payment method.</value></data>
+  <data name="Val_Overpayment" xml:space="preserve"><value>The amount is more than the invoice's remaining balance.</value></data>
+  <data name="Val_DuplicatePayment" xml:space="preserve"><value>An identical payment was just recorded. Please check before adding another.</value></data>
+  <data name="Val_InvoiceNotFound" xml:space="preserve"><value>Invoice not found.</value></data>
+  <data name="Val_InvoiceMismatch" xml:space="preserve"><value>This invoice belongs to another doctor.</value></data>
+  <data name="Val_InvoiceVoided" xml:space="preserve"><value>This invoice was voided.</value></data>
+  <data name="Val_AlreadyVoided" xml:space="preserve"><value>The invoice is already voided.</value></data>
+  <data name="Val_InvoiceHasPayments" xml:space="preserve"><value>Reverse the invoice's payments before voiding it.</value></data>
+  <data name="Val_AlreadyReversed" xml:space="preserve"><value>This payment is already reversed.</value></data>
+  <data name="Val_DescriptionRequired" xml:space="preserve"><value>A description is required.</value></data>
+  <data name="Val_CaseInvoiced" xml:space="preserve"><value>An invoiced case cannot be edited or cancelled.</value></data>
+  <data name="Dash_Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Range_ThisMonth" xml:space="preserve"><value>This month</value></data>
+  <data name="Range_Last30" xml:space="preserve"><value>Last 30 days</value></data>
+  <data name="Range_Last3Months" xml:space="preserve"><value>Last 3 months</value></data>
+  <data name="Range_Last6Months" xml:space="preserve"><value>Last 6 months</value></data>
+  <data name="Range_ThisYear" xml:space="preserve"><value>This year</value></data>
+  <data name="Range_AllTime" xml:space="preserve"><value>All time</value></data>
+  <data name="Card_Doctors" xml:space="preserve"><value>Active doctors</value></data>
+  <data name="Card_Cases" xml:space="preserve"><value>Total cases</value></data>
+  <data name="Card_ReceivedToday" xml:space="preserve"><value>Received today</value></data>
+  <data name="Card_InProduction" xml:space="preserve"><value>In production</value></data>
+  <data name="Card_Ready" xml:space="preserve"><value>Ready for delivery</value></data>
+  <data name="Card_Overdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Card_BilledToday" xml:space="preserve"><value>Today's revenue</value></data>
+  <data name="Card_CollectedToday" xml:space="preserve"><value>Collected today</value></data>
+  <data name="Card_BilledMonth" xml:space="preserve"><value>Monthly revenue</value></data>
+  <data name="Card_CollectedMonth" xml:space="preserve"><value>Collected this month</value></data>
+  <data name="Card_Outstanding" xml:space="preserve"><value>Outstanding balances</value></data>
+  <data name="Card_BilledRange" xml:space="preserve"><value>Billed (selected period)</value></data>
+  <data name="Chart_Revenue" xml:space="preserve"><value>Monthly revenue</value></data>
+  <data name="Chart_Billed" xml:space="preserve"><value>Billed</value></data>
+  <data name="Chart_Collected" xml:space="preserve"><value>Collected</value></data>
+  <data name="Chart_CasesStatus" xml:space="preserve"><value>Cases by status (selected period)</value></data>
+  <data name="Chart_CasesVolume" xml:space="preserve"><value>Monthly case volume</value></data>
+  <data name="Chart_CasesSeries" xml:space="preserve"><value>Cases</value></data>
+  <data name="Chart_TopDoctors" xml:space="preserve"><value>Top doctors by cases (selected period)</value></data>
+  <data name="Dash_RecentPayments" xml:space="preserve"><value>Recent payments</value></data>
+  <data name="Dash_Upcoming" xml:space="preserve"><value>Upcoming deliveries</value></data>
+  <data name="Dash_Activity" xml:space="preserve"><value>Recent case activity</value></data>
+  <data name="Dash_NoData" xml:space="preserve"><value>No data yet.</value></data>
+  <data name="Dash_RevenueNote" xml:space="preserve"><value>Revenue = invoiced amounts (voided invoices excluded). Collected = payments received (reversed payments excluded). Outstanding = balances doctors owe.</value></data>
+  <data name="Backup_Create" xml:space="preserve"><value>Create backup now</value></data>
+  <data name="Backup_Check" xml:space="preserve"><value>Check database integrity</value></data>
+  <data name="Backup_OpenFolder" xml:space="preserve"><value>Open backups folder</value></data>
+  <data name="Backup_Auto" xml:space="preserve"><value>Automatic backups</value></data>
+  <data name="Backup_AutoEnable" xml:space="preserve"><value>Back up automatically</value></data>
+  <data name="Backup_Interval" xml:space="preserve"><value>Every</value></data>
+  <data name="Backup_Hours" xml:space="preserve"><value>{0} hours</value></data>
+  <data name="Backup_Retention" xml:space="preserve"><value>Automatic backups to keep</value></data>
+  <data name="Backup_Compress" xml:space="preserve"><value>Compress backups</value></data>
+  <data name="Backup_History" xml:space="preserve"><value>Backup history</value></data>
+  <data name="Backup_Empty" xml:space="preserve"><value>No backups yet.</value></data>
+  <data name="Col_File" xml:space="preserve"><value>File</value></data>
+  <data name="Col_Size" xml:space="preserve"><value>Size</value></data>
+  <data name="Backup_Kind_Manual" xml:space="preserve"><value>Manual</value></data>
+  <data name="Backup_Kind_Auto" xml:space="preserve"><value>Automatic</value></data>
+  <data name="Backup_Kind_PreRestore" xml:space="preserve"><value>Before restore</value></data>
+  <data name="Backup_Verify" xml:space="preserve"><value>Verify</value></data>
+  <data name="Backup_Restore" xml:space="preserve"><value>Restore</value></data>
+  <data name="Backup_Created" xml:space="preserve"><value>Backup created: {0}</value></data>
+  <data name="Backup_VerifyOk" xml:space="preserve"><value>The backup is valid and can be restored.</value></data>
+  <data name="Backup_Verify_ZipUnreadable" xml:space="preserve"><value>The backup file cannot be read.</value></data>
+  <data name="Backup_Verify_ManifestMissing" xml:space="preserve"><value>The backup is missing its manifest.</value></data>
+  <data name="Backup_Verify_DatabaseMissing" xml:space="preserve"><value>The backup does not contain the database.</value></data>
+  <data name="Backup_Verify_ChecksumMismatch" xml:space="preserve"><value>The backup is corrupted (checksum mismatch).</value></data>
+  <data name="Backup_Verify_IntegrityFailed" xml:space="preserve"><value>The backed-up database failed the integrity check.</value></data>
+  <data name="Backup_Verify_FilesMissing" xml:space="preserve"><value>Some attached files are missing from the backup.</value></data>
+  <data name="Backup_IntegrityOk" xml:space="preserve"><value>Database integrity check passed.</value></data>
+  <data name="Backup_IntegrityFailed" xml:space="preserve"><value>Database integrity check FAILED. Restore a recent backup.</value></data>
+  <data name="Backup_RestoreTitle" xml:space="preserve"><value>Restore this backup?</value></data>
+  <data name="Backup_RestoreWarning" xml:space="preserve"><value>Current data will be replaced by the backup. A safety backup of the current data is created first, and the app must restart to finish the restore.</value></data>
+  <data name="Backup_RestoreConfirm" xml:space="preserve"><value>Yes, restore</value></data>
+  <data name="Backup_RestoreScheduled" xml:space="preserve"><value>Restore is ready. Restart the app to finish it.</value></data>
+  <data name="Backup_RestartNow" xml:space="preserve"><value>Restart now</value></data>
+  <data name="Backup_Working" xml:space="preserve"><value>Working…</value></data>
+  <data name="Backup_Error" xml:space="preserve"><value>The operation failed. See the log for details.</value></data>
+  <data name="Doc_DefaultLabName" xml:space="preserve"><value>Dental Laboratory</value></data>
+  <data name="Doc_Invoice" xml:space="preserve"><value>Invoice</value></data>
+  <data name="Doc_ReceiptTitle" xml:space="preserve"><value>Payment receipt</value></data>
+  <data name="Doc_Statement" xml:space="preserve"><value>Account statement</value></data>
+  <data name="Doc_WorkOrder" xml:space="preserve"><value>Work order</value></data>
+  <data name="Doc_BillTo" xml:space="preserve"><value>Bill to</value></data>
+  <data name="Doc_Item" xml:space="preserve"><value>Item</value></data>
+  <data name="Doc_Voided" xml:space="preserve"><value>VOID</value></data>
+  <data name="Doc_Thanks" xml:space="preserve"><value>Thank you for your business.</value></data>
+  <data name="Doc_ReceivedBy" xml:space="preserve"><value>Received by</value></data>
+  <data name="Doc_DoctorSignature" xml:space="preserve"><value>Doctor's signature</value></data>
+  <data name="Doc_Technician" xml:space="preserve"><value>Technician</value></data>
+  <data name="Doc_QC" xml:space="preserve"><value>Quality control</value></data>
+  <data name="Doc_AmountReceived" xml:space="preserve"><value>Amount received</value></data>
+  <data name="Doc_ClosingBalance" xml:space="preserve"><value>Closing balance</value></data>
+  <data name="Doc_PrintedOn" xml:space="preserve"><value>Printed on</value></data>
+  <data name="Doc_RelatedInvoice" xml:space="preserve"><value>Related invoice</value></data>
+  <data name="Doc_OnAccount" xml:space="preserve"><value>On account</value></data>
+  <data name="Doc_AppliedPayments" xml:space="preserve"><value>Payments applied</value></data>
+  <data name="Doc_AsOf" xml:space="preserve"><value>As of</value></data>
+  <data name="Doc_Print" xml:space="preserve"><value>Print</value></data>
+  <data name="Doc_PrintReceipt" xml:space="preserve"><value>Receipt</value></data>
+  <data name="Doc_PrintStatement" xml:space="preserve"><value>Print statement</value></data>
+  <data name="Doc_WorkOrderButton" xml:space="preserve"><value>Work order</value></data>
+  <data name="Preview_Format" xml:space="preserve"><value>Paper</value></data>
+  <data name="Preview_Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Preview_Save" xml:space="preserve"><value>Save as PDF</value></data>
+  <data name="Preview_Open" xml:space="preserve"><value>Open in PDF viewer</value></data>
+  <data name="Preview_Saved" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="Preview_Printed" xml:space="preserve"><value>Sent to the printer.</value></data>
+  <data name="Preview_Error" xml:space="preserve"><value>The document could not be created. See the log for details.</value></data>
+  <data name="Preview_PrintError" xml:space="preserve"><value>Printing failed. Check the printer and try again.</value></data>
+  <data name="Preview_SaveError" xml:space="preserve"><value>The file could not be saved there. Choose another folder.</value></data>
+  <data name="Preview_OpenError" xml:space="preserve"><value>No PDF viewer could be opened.</value></data>
+  <data name="Format_A4" xml:space="preserve"><value>A4</value></data>
+  <data name="Format_A5" xml:space="preserve"><value>A5</value></data>
+  <data name="Format_Thermal80" xml:space="preserve"><value>Thermal receipt 80 mm</value></data>
+  <data name="DocLang_Follow" xml:space="preserve"><value>Same as the app</value></data>
+  <data name="DocLang_Arabic" xml:space="preserve"><value>Arabic</value></data>
+  <data name="DocLang_English" xml:space="preserve"><value>English</value></data>
+  <data name="Lab_Title" xml:space="preserve"><value>Laboratory &amp; printing</value></data>
+  <data name="Lab_Name" xml:space="preserve"><value>Laboratory name</value></data>
+  <data name="Lab_Currency" xml:space="preserve"><value>Currency (printed on documents)</value></data>
+  <data name="Lab_Logo" xml:space="preserve"><value>Logo</value></data>
+  <data name="Lab_ChooseLogo" xml:space="preserve"><value>Choose…</value></data>
+  <data name="Lab_ClearLogo" xml:space="preserve"><value>Remove</value></data>
+  <data name="Lab_NoLogo" xml:space="preserve"><value>No logo</value></data>
+  <data name="Lab_DefaultFormat" xml:space="preserve"><value>Default paper</value></data>
+  <data name="Lab_DocLanguage" xml:space="preserve"><value>Document language</value></data>
+  <data name="Lab_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="Val_LogoInvalid" xml:space="preserve"><value>The logo must be a PNG or JPG image under 2 MB.</value></data>
+  <data name="Attach_Title" xml:space="preserve"><value>Attachments</value></data>
+  <data name="Attach_Add" xml:space="preserve"><value>Add files</value></data>
+  <data name="Attach_Empty" xml:space="preserve"><value>No files attached yet. Photos (JPG, PNG), STL and PLY files are supported.</value></data>
+  <data name="Attach_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Attach_Remove" xml:space="preserve"><value>Delete</value></data>
+  <data name="Attach_RemoveConfirm" xml:space="preserve"><value>Delete this file permanently?</value></data>
+  <data name="Attach_Kind_Photo" xml:space="preserve"><value>Photo</value></data>
+  <data name="Attach_Kind_Stl" xml:space="preserve"><value>STL</value></data>
+  <data name="Attach_Kind_Ply" xml:space="preserve"><value>PLY</value></data>
+  <data name="Attach_Added" xml:space="preserve"><value>{0} file(s) added.</value></data>
+  <data name="Attach_OpenError" xml:space="preserve"><value>The file could not be opened.</value></data>
+  <data name="Val_UnsupportedType" xml:space="preserve"><value>Only photos (JPG, PNG), STL and PLY files are allowed.</value></data>
+  <data name="Val_FileEmpty" xml:space="preserve"><value>The file is empty.</value></data>
+  <data name="Val_FileTooLarge" xml:space="preserve"><value>The file is too large.</value></data>
+  <data name="Val_ContentMismatch" xml:space="preserve"><value>The file content does not match its type.</value></data>
+  <data name="Val_FileMissing" xml:space="preserve"><value>The file was not found.</value></data>
+  <data name="Workflow_Stat_InProgress" xml:space="preserve"><value>In progress</value></data>
+  <data name="Workflow_Stat_DueToday" xml:space="preserve"><value>Due today</value></data>
+  <data name="Workflow_Stat_Overdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Workflow_Stat_Delivered30" xml:space="preserve"><value>Delivered (30 days)</value></data>
+  <data name="Workflow_Stat_Turnaround" xml:space="preserve"><value>Avg. turnaround (days)</value></data>
+  <data name="Workflow_Empty" xml:space="preserve"><value>No cases</value></data>
+  <data name="Workflow_Deliver" xml:space="preserve"><value>Deliver</value></data>
+  <data name="Patient_History" xml:space="preserve"><value>Case history</value></data>
+  <data name="Patient_HistoryTitle" xml:space="preserve"><value>Cases of</value></data>
+  <data name="Patient_NoCases" xml:space="preserve"><value>This patient has no cases yet.</value></data>
+  <data name="Common_Close" xml:space="preserve"><value>Close</value></data>
+</root>

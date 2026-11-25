@@ -1,0 +1,128 @@
+<UserControl x:Class="DentalLab.Desktop.Views.InvoiceDetailsView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="clr-namespace:DentalLab.Desktop.Views" xmlns:helpers="clr-namespace:DentalLab.Desktop.Helpers" xmlns:controls="clr-namespace:DentalLab.Desktop.Controls" xmlns:vm="clr-namespace:DentalLab.Desktop.ViewModels">
+    <UserControl.Resources>
+        <helpers:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        <Style x:Key="InfoLabel" TargetType="TextBlock"><Setter Property="FontSize" Value="12" /><Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" /><Setter Property="Margin" Value="0,10,0,2" /></Style>
+        <Style x:Key="InfoValue" TargetType="TextBlock"><Setter Property="FontSize" Value="14" /><Setter Property="Foreground" Value="{DynamicResource TextBrush}" /><Setter Property="TextWrapping" Value="Wrap" /></Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <Button Style="{StaticResource IconButton}" Content="{Binding BackGlyph}" Command="{Binding BackCommand}" Margin="0,0,12,0" ToolTip="{Binding Loc[Common_Back]}" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Details.Number}" FontSize="26" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <Ellipse Width="9" Height="9" Margin="0,0,8,0" VerticalAlignment="Center" Fill="{Binding Details.Status, Converter={StaticResource InvoiceStatusBrush}}" />
+                        <TextBlock Text="{Binding Details.Status, Converter={StaticResource InvoiceStatusText}}" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                        <TextBlock Text="{Binding Details.DoctorName}" Margin="14,0,0,0" Foreground="{DynamicResource TextMutedBrush}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Doc_Print]}" Command="{Binding PrintCommand}" Margin="0,0,10,0" />
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Invoice_Void]}" Command="{Binding StartVoidCommand}" Margin="0,0,10,0"
+                            Visibility="{Binding CanVoid, Converter={StaticResource BoolToVis}}" />
+                    <Button Style="{StaticResource PrimaryButton}" Content="{Binding Loc[Invoice_RecordPayment]}" Command="{Binding RecordPaymentCommand}"
+                            Visibility="{Binding CanPay, Converter={StaticResource BoolToVis}}" />
+                </StackPanel>
+            </Grid>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16" BorderBrush="{StaticResource GoldBrush}" Visibility="{Binding IsConfirmOpen, Converter={StaticResource BoolToVis}}">
+                <StackPanel>
+                    <TextBlock Text="{Binding ConfirmTitle}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                    <TextBlock Text="{Binding Loc[Payments_ReverseHint]}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" Margin="0,4,0,0" TextWrapping="Wrap" />
+                    <TextBlock Style="{StaticResource FieldLabel}" Text="{Binding Loc[Invoice_VoidReason]}" />
+                    <TextBox Style="{StaticResource FieldTextBox}" Text="{Binding ReasonText, UpdateSourceTrigger=PropertyChanged}" MaxWidth="520" HorizontalAlignment="Left" MinWidth="320" />
+                    <TextBlock Text="{Binding ErrorText}" Foreground="{StaticResource DangerBrush}" Margin="0,10,0,0" TextWrapping="Wrap">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
+                            <DataTrigger Binding="{Binding ErrorText}" Value=""><Setter Property="Visibility" Value="Collapsed" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                        <Button Style="{StaticResource PrimaryButton}" Content="{Binding Loc[Invoice_Confirm]}" Command="{Binding ConfirmCommand}" Margin="0,0,10,0" />
+                        <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Common_Cancel]}" Command="{Binding CancelConfirmCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding Loc[Invoice_VoidedInfo]}" Foreground="{StaticResource DangerBrush}" FontWeight="SemiBold" Margin="0,0,0,12"
+                       Visibility="{Binding IsVoided, Converter={StaticResource BoolToVis}}" />
+
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Loc[Field_Total]}" Foreground="{DynamicResource TextMutedBrush}" FontSize="13" />
+                        <TextBlock Text="{Binding TotalText}" FontSize="28" FontWeight="Bold" Margin="0,6,0,0" Foreground="{StaticResource GoldBrush}" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource Card}"><StackPanel>
+                    <TextBlock Text="{Binding Loc[Col_Paid]}" Foreground="{DynamicResource TextMutedBrush}" FontSize="13" />
+                    <TextBlock Text="{Binding PaidText}" FontSize="28" FontWeight="Bold" Margin="0,6,0,0" Foreground="{StaticResource SuccessBrush}" />
+                </StackPanel></Border>
+                <Border Grid.Column="4" Style="{StaticResource Card}"><StackPanel>
+                    <TextBlock Text="{Binding Loc[Col_Remaining]}" Foreground="{DynamicResource TextMutedBrush}" FontSize="13" />
+                    <TextBlock Text="{Binding RemainingText}" FontSize="28" FontWeight="Bold" Margin="0,6,0,0" Foreground="{StaticResource WarningBrush}" />
+                </StackPanel></Border>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.6*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <StackPanel>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,16" Padding="20,18,20,12">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Loc[Invoice_Lines]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,8" />
+                            <DataGrid Style="{StaticResource PremiumDataGrid}" ItemsSource="{Binding Lines}" RowHeight="44" MaxHeight="340" VerticalScrollBarVisibility="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{Binding Data.Loc[Col_CaseNumber], Source={StaticResource Proxy}}" Binding="{Binding CaseNumber}" Width="150" />
+                                    <DataGridTextColumn Header="{Binding Data.Loc[Field_Quantity], Source={StaticResource Proxy}}" Binding="{Binding QuantityText}" Width="90" />
+                                    <DataGridTextColumn Header="{Binding Data.Loc[Field_UnitPrice], Source={StaticResource Proxy}}" Binding="{Binding UnitPriceText}" Width="*" />
+                                    <DataGridTextColumn Header="{Binding Data.Loc[Field_Discount], Source={StaticResource Proxy}}" Binding="{Binding DiscountText}" Width="*" />
+                                    <DataGridTextColumn Header="{Binding Data.Loc[Col_Total], Source={StaticResource Proxy}}" Binding="{Binding AmountText}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Loc[Invoice_Payments]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,6" />
+                            <ItemsControl ItemsSource="{Binding Payments}">
+                                <ItemsControl.ItemTemplate><DataTemplate>
+                                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Padding="0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding ReceiptNumber}" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                                                    <TextBlock Text="{Binding Method, Converter={StaticResource MethodText}}" Margin="12,0,0,0" Foreground="{DynamicResource TextMutedBrush}" />
+                                                </StackPanel>
+                                                <TextBlock Text="{Binding DateText}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding AmountText}" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}" Margin="0,0,12,0" />
+                                                <Button Style="{StaticResource GhostButton}" Height="32" MinWidth="60" FontSize="12" Padding="10,0" Margin="0,0,8,0" Content="{Binding DataContext.Loc[Doc_PrintReceipt], RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        Command="{Binding DataContext.PrintReceiptCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" />
+                                                <Button Style="{StaticResource GhostButton}" Height="32" MinWidth="60" FontSize="12" Padding="10,0" Content="{Binding DataContext.Loc[Invoice_ReversePayment], RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        Command="{Binding DataContext.StartReverseCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"
+                                                        Visibility="{Binding CanReverse, Converter={StaticResource BoolToVis}}" />
+                                                <TextBlock Text="{Binding DataContext.Loc[Invoice_Reversed], RelativeSource={RelativeSource AncestorType=ItemsControl}}" VerticalAlignment="Center" Foreground="{StaticResource DangerBrush}"
+                                                           Visibility="{Binding IsReversed, Converter={StaticResource BoolToVis}}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate></ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Details_Received]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding DateText}" />
+                        <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Details_Subtotal]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding SubtotalText}" />
+                        <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Discount]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding DiscountText}" />
+                        <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Invoice_Description]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding DescriptionText}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

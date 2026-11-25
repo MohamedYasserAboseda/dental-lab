@@ -1,0 +1,146 @@
+<UserControl x:Class="DentalLab.Desktop.Views.DashboardView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="clr-namespace:DentalLab.Desktop.Views" xmlns:helpers="clr-namespace:DentalLab.Desktop.Helpers" xmlns:controls="clr-namespace:DentalLab.Desktop.Controls" xmlns:vm="clr-namespace:DentalLab.Desktop.ViewModels">
+    <UserControl.Resources>
+        <DataTemplate x:Key="BarRowTemplate">
+            <StackPanel Margin="0,0,0,12">
+                <Grid>
+                    <TextBlock Text="{Binding Label}" Foreground="{DynamicResource TextBrush}" TextTrimming="CharacterEllipsis" Margin="0,0,40,0" />
+                    <TextBlock Text="{Binding ValueText}" HorizontalAlignment="Right" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                </Grid>
+                <ProgressBar Style="{StaticResource SlimProgressBar}" Margin="0,5,0,0" Value="{Binding Fraction, Mode=OneWay}" Foreground="{Binding Brush}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ListRowTemplate">
+            <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Padding="0,9">
+                <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Primary}" Foreground="{DynamicResource TextBrush}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Text="{Binding Secondary}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Text="{Binding Right}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="{DynamicResource TextMutedBrush}">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
+                            <DataTrigger Binding="{Binding HasRightBrush}" Value="True"><Setter Property="Foreground" Value="{Binding RightBrush}" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Grid Margin="0,0,0,18">
+                <TextBlock Text="{Binding Loc[Nav_Dashboard]}" FontSize="28" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox Style="{StaticResource PremiumComboBox}" Width="190" Margin="0,0,10,0" ItemsSource="{Binding RangeOptions}"
+                              DisplayMemberPath="Text" SelectedItem="{Binding SelectedRange, Mode=TwoWay}" />
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Dash_Refresh]}" Command="{Binding RefreshCommand}" />
+                </StackPanel>
+            </Grid>
+
+            <ItemsControl ItemsSource="{Binding Cards}" Margin="0,0,-12,4">
+                <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Columns="4" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}" Margin="0,0,12,12" Padding="18,16">
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Label}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" TextTrimming="CharacterEllipsis" />
+                                    <controls:AnimatedNumber Value="{Binding Value}" Decimals="{Binding Decimals}" FontSize="26" FontWeight="Bold" Margin="0,4,0,0"
+                                                             Foreground="{Binding Accent}" />
+                                    <TextBlock Text="{Binding Hint}" FontSize="11" Foreground="{DynamicResource TextMutedBrush}" Margin="0,2,0,0" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                                <Grid Grid.Column="1" Width="40" Height="40" VerticalAlignment="Top" Margin="8,0,0,0">
+                                    <Border CornerRadius="12" Background="{Binding Accent}" Opacity="0.16" />
+                                    <TextBlock Text="{Binding Glyph}" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="{Binding Accent}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="{Binding Loc[Dash_RevenueNote]}" FontSize="11" Foreground="{DynamicResource TextMutedBrush}" Margin="2,0,0,16" TextWrapping="Wrap" />
+
+            <Grid Margin="0,0,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.6*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Loc[Chart_Revenue]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,6" />
+                        <controls:BarChartControl Height="250" Data="{Binding RevenueChart}" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Chart_CasesStatus]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,10" />
+                    <ItemsControl ItemsSource="{Binding StatusRows}" ItemTemplate="{StaticResource BarRowTemplate}" />
+                    <TextBlock Text="{Binding Loc[Dash_NoData]}" Foreground="{DynamicResource TextMutedBrush}" Margin="0,8,0,0">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                            <DataTrigger Binding="{Binding StatusRows.Count}" Value="0"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.6*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Loc[Chart_CasesVolume]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,6" />
+                        <controls:BarChartControl Height="220" Data="{Binding CasesChart}" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Chart_TopDoctors]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,10" />
+                    <ItemsControl ItemsSource="{Binding DoctorRows}" ItemTemplate="{StaticResource BarRowTemplate}" />
+                    <TextBlock Text="{Binding Loc[Dash_NoData]}" Foreground="{DynamicResource TextMutedBrush}" Margin="0,8,0,0">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                            <DataTrigger Binding="{Binding DoctorRows.Count}" Value="0"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Dash_RecentPayments]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,8" />
+                    <ItemsControl ItemsSource="{Binding PaymentRows}" ItemTemplate="{StaticResource ListRowTemplate}" />
+                    <TextBlock Text="{Binding Loc[Dash_NoData]}" Foreground="{DynamicResource TextMutedBrush}" Margin="0,8,0,0">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                            <DataTrigger Binding="{Binding PaymentRows.Count}" Value="0"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+                <Border Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Dash_Upcoming]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,8" />
+                    <ItemsControl ItemsSource="{Binding UpcomingRows}" ItemTemplate="{StaticResource ListRowTemplate}" />
+                    <TextBlock Text="{Binding Loc[Dash_NoData]}" Foreground="{DynamicResource TextMutedBrush}" Margin="0,8,0,0">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                            <DataTrigger Binding="{Binding UpcomingRows.Count}" Value="0"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+                <Border Grid.Column="4" Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Dash_Activity]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,8" />
+                    <ItemsControl ItemsSource="{Binding ActivityRows}" ItemTemplate="{StaticResource ListRowTemplate}" />
+                    <TextBlock Text="{Binding Loc[Dash_NoData]}" Foreground="{DynamicResource TextMutedBrush}" Margin="0,8,0,0">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                            <DataTrigger Binding="{Binding ActivityRows.Count}" Value="0"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

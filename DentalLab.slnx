@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DentalLab.Domain/DentalLab.Domain.csproj" />
+    <Project Path="src/DentalLab.Shared/DentalLab.Shared.csproj" />
+    <Project Path="src/DentalLab.Application/DentalLab.Application.csproj" />
+    <Project Path="src/DentalLab.Infrastructure/DentalLab.Infrastructure.csproj" />
+    <Project Path="src/DentalLab.Desktop/DentalLab.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DentalLab.Domain.Tests/DentalLab.Domain.Tests.csproj" />
+    <Project Path="tests/DentalLab.Application.Tests/DentalLab.Application.Tests.csproj" />
+  </Folder>
+</Solution>

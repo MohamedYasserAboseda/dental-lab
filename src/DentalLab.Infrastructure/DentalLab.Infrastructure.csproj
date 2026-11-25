@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\DentalLab.Application\DentalLab.Application.csproj" />
+    <ProjectReference Include="..\DentalLab.Domain\DentalLab.Domain.csproj" />
+    <ProjectReference Include="..\DentalLab.Shared\DentalLab.Shared.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.*" />
+    <PackageReference Include="QuestPDF" Version="2025.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

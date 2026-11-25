@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

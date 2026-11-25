@@ -1,0 +1,18 @@
+<UserControl x:Class="DentalLab.Desktop.Views.PlaceholderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:svc="clr-namespace:DentalLab.Desktop.Services">
+    <Border Style="{StaticResource Card}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="420">
+            <Viewbox Width="110" Height="110" Margin="0,0,0,20">
+                <Path Data="{StaticResource ToothGeometry}" Stroke="{StaticResource GoldBrush}"
+                      StrokeThickness="2.5" StrokeLineJoin="Round" Width="100" Height="100" Stretch="Uniform" />
+            </Viewbox>
+            <TextBlock Text="{Binding Item.Title}" FontSize="26" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextBrush}" TextAlignment="Center" />
+            <TextBlock Text="{Binding [Placeholder_Desc], Source={x:Static svc:LocalizationService.Instance}}"
+                       Margin="0,8,0,0" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"
+                       Foreground="{DynamicResource TextMutedBrush}" />
+        </StackPanel>
+    </Border>
+</UserControl>

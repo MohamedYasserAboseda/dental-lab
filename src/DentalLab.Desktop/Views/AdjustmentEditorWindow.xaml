@@ -1,0 +1,19 @@
+<views:DialogWindowBase x:Class="DentalLab.Desktop.Views.AdjustmentEditorWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="clr-namespace:DentalLab.Desktop.Views" xmlns:helpers="clr-namespace:DentalLab.Desktop.Helpers" xmlns:controls="clr-namespace:DentalLab.Desktop.Controls" xmlns:vm="clr-namespace:DentalLab.Desktop.ViewModels"
+        Style="{StaticResource DialogWindow}" Width="520">
+    
+    <StackPanel>
+            <TextBlock Text="{Binding Loc[Adjust_Hint]}" FontSize="13" TextWrapping="Wrap" Foreground="{DynamicResource TextMutedBrush}" />
+            <TextBlock Style="{StaticResource FieldLabel}" Text="{Binding Loc[Field_Amount]}" />
+            <TextBox Style="{StaticResource FieldTextBox}" Text="{Binding AmountText, UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" />
+            <TextBlock Style="{StaticResource FieldLabel}" Text="{Binding Loc[Field_Description]}" />
+            <TextBox Style="{StaticResource FieldTextBox}" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="64" VerticalContentAlignment="Top" />
+            <TextBlock Text="{Binding ErrorText}" Foreground="{StaticResource DangerBrush}" TextWrapping="Wrap" Margin="0,14,0,0">
+                <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
+                    <DataTrigger Binding="{Binding ErrorText}" Value=""><Setter Property="Visibility" Value="Collapsed" /></DataTrigger>
+                </Style.Triggers></Style></TextBlock.Style></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,22,0,0">
+                <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Common_Cancel]}" Command="{Binding CancelCommand}" Margin="0,0,10,0" />
+                <Button Style="{StaticResource PrimaryButton}" Content="{Binding Loc[Common_Save]}" Command="{Binding SaveCommand}" />
+            </StackPanel>
+    </StackPanel>
+</views:DialogWindowBase>

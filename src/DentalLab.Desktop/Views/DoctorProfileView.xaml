@@ -1,0 +1,172 @@
+<UserControl x:Class="DentalLab.Desktop.Views.DoctorProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:DentalLab.Desktop.Helpers">
+    <UserControl.Resources>
+        <helpers:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        <Style x:Key="InfoLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+            <Setter Property="Margin" Value="0,12,0,2" />
+        </Style>
+        <Style x:Key="InfoValue" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource IconButton}" Content="{Binding BackGlyph}" Command="{Binding BackCommand}"
+                    Margin="0,0,12,0" ToolTip="{Binding Loc[Common_Back]}" />
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Details.FullName}" FontSize="26" FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextBrush}" />
+                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                    <TextBlock Text="{Binding Details.Code}" Foreground="{StaticResource GoldBrush}" FontWeight="SemiBold" />
+                    <TextBlock Text="  •  " Foreground="{DynamicResource TextMutedBrush}" />
+                    <TextBlock Text="{Binding Details.ClinicName}" Foreground="{DynamicResource TextMutedBrush}" />
+                    <TextBlock Text="  •  " Foreground="{DynamicResource TextMutedBrush}" />
+                    <TextBlock Text="{Binding Details.IsActive, Converter={StaticResource StatusText}}"
+                               Foreground="{DynamicResource TextMutedBrush}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Doc_PrintStatement]}" Command="{Binding PrintStatementCommand}" Margin="0,0,10,0" />
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Doctors_Prices]}" Command="{Binding PricesCommand}" Margin="0,0,10,0" />
+                <Button Style="{StaticResource GhostButton}" Content="{Binding ToggleActiveText}"
+                        Command="{Binding ToggleActiveCommand}" Margin="0,0,10,0" />
+                <Button Style="{StaticResource PrimaryButton}" Content="{Binding Loc[Doctors_Edit]}"
+                        Command="{Binding EditCommand}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Info cards -->
+        <Grid Grid.Row="1" Margin="0,0,0,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="1.3*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="1.3*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Loc[Profile_Balance]}" Foreground="{DynamicResource TextMutedBrush}" FontSize="13" />
+                    <TextBlock Text="{Binding BalanceText}" FontSize="34" FontWeight="Bold" Margin="0,8,0,6"
+                               Foreground="{Binding Balance, Converter={StaticResource BalanceBrush}}" />
+                    <TextBlock Text="{Binding Loc[Profile_BalanceHint]}" FontSize="12" TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextMutedBrush}" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,0,0,2" Text="{Binding Loc[Field_Phone]}" />
+                    <TextBlock Style="{StaticResource InfoValue}" Text="{Binding PhoneText}" FlowDirection="LeftToRight" HorizontalAlignment="Left" />
+                    <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Email]}" />
+                    <TextBlock Style="{StaticResource InfoValue}" Text="{Binding EmailText}" FlowDirection="LeftToRight" HorizontalAlignment="Left" />
+                    <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Address]}" />
+                    <TextBlock Style="{StaticResource InfoValue}" Text="{Binding AddressText}" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="4" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,0,0,2" Text="{Binding Loc[Profile_Registered]}" />
+                    <TextBlock Style="{StaticResource InfoValue}" Text="{Binding RegisteredText}" />
+                    <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Notes]}" />
+                    <TextBlock Style="{StaticResource InfoValue}" Text="{Binding NotesText}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Statement -->
+        <Border Grid.Row="2" Style="{StaticResource Card}" Padding="20,18,20,12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border Background="{DynamicResource BgBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="12" Padding="3" Height="42"
+                        HorizontalAlignment="Left" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton GroupName="ProfileTabs" Style="{StaticResource SegmentedRadio}" Content="{Binding Loc[Profile_Statement]}" IsChecked="{Binding IsTabStatement, Mode=TwoWay}" />
+                        <RadioButton GroupName="ProfileTabs" Style="{StaticResource SegmentedRadio}" Content="{Binding Loc[Nav_Cases]}" IsChecked="{Binding IsTabCases, Mode=TwoWay}" />
+                        <RadioButton GroupName="ProfileTabs" Style="{StaticResource SegmentedRadio}" Content="{Binding Loc[Nav_Invoices]}" IsChecked="{Binding IsTabInvoices, Mode=TwoWay}" />
+                        <RadioButton GroupName="ProfileTabs" Style="{StaticResource SegmentedRadio}" Content="{Binding Loc[Nav_Payments]}" IsChecked="{Binding IsTabPayments, Mode=TwoWay}" />
+                    </StackPanel>
+                </Border>
+
+                <Grid Grid.Row="1" Visibility="{Binding IsTabStatement, Converter={StaticResource BoolToVis}}">
+                    <DataGrid Style="{StaticResource PremiumDataGrid}" ItemsSource="{Binding Lines}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_Date], Source={StaticResource Proxy}}"
+                                                Binding="{Binding DateText}" Width="160" />
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_Type], Source={StaticResource Proxy}}"
+                                                Binding="{Binding Type, Converter={StaticResource LedgerTypeText}}" Width="160" />
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_Description], Source={StaticResource Proxy}}"
+                                                Binding="{Binding Description}" Width="*" />
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_Debit], Source={StaticResource Proxy}}"
+                                                Binding="{Binding DebitText}" Width="120" />
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_Credit], Source={StaticResource Proxy}}"
+                                                Binding="{Binding CreditText}" Width="120" />
+                            <DataGridTextColumn Header="{Binding Data.Loc[Col_RunningBalance], Source={StaticResource Proxy}}"
+                                                Binding="{Binding RunningText}" Width="130" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="{Binding Loc[Profile_StatementEmpty]}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Margin="0,40,0,0" Foreground="{DynamicResource TextMutedBrush}"
+                               Visibility="{Binding HasNoLines, Converter={StaticResource BoolToVis}}" />
+                </Grid>
+
+                <Grid Grid.Row="1" Visibility="{Binding IsTabCases, Converter={StaticResource BoolToVis}}">
+                    <DataGrid Style="{StaticResource PremiumDataGrid}" ItemsSource="{Binding Cases}" RowHeight="46">
+                        <DataGrid.Columns><DataGridTextColumn Header="{Binding Data.Loc[Col_CaseNumber], Source={StaticResource Proxy}}" Binding="{Binding CaseNumber}" Width="140" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Patient], Source={StaticResource Proxy}}" Binding="{Binding PatientName}" Width="*" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Restoration], Source={StaticResource Proxy}}" Binding="{Binding RestorationText}" Width="*" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Teeth], Source={StaticResource Proxy}}" Binding="{Binding TeethText}" Width="*" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Expected], Source={StaticResource Proxy}}" Binding="{Binding ExpectedText}" Width="120" /><DataGridTemplateColumn Header="{Binding Data.Loc[Col_Status], Source={StaticResource Proxy}}" Width="150"><DataGridTemplateColumn.CellTemplate><DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="8" Height="8" Margin="0,0,8,0" VerticalAlignment="Center" Fill="{Binding Status, Converter={StaticResource CaseStatusBrush}}" />
+                                    <TextBlock Text="{Binding Status, Converter={StaticResource CaseStatusText}}" />
+                                </StackPanel></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn><DataGridTextColumn Header="{Binding Data.Loc[Col_Total], Source={StaticResource Proxy}}" Binding="{Binding TotalText}" Width="110" /></DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="{Binding Loc[Cases_Empty]}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"
+                               Foreground="{DynamicResource TextMutedBrush}" Visibility="{Binding HasNoCases, Converter={StaticResource BoolToVis}}" />
+                </Grid>
+                <Grid Grid.Row="1" Visibility="{Binding IsTabInvoices, Converter={StaticResource BoolToVis}}">
+                    <DataGrid Style="{StaticResource PremiumDataGrid}" ItemsSource="{Binding Invoices}" RowHeight="46">
+                        <DataGrid.Columns><DataGridTextColumn Header="{Binding Data.Loc[Col_Invoice], Source={StaticResource Proxy}}" Binding="{Binding Number}" Width="150" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Date], Source={StaticResource Proxy}}" Binding="{Binding DateText}" Width="110" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Total], Source={StaticResource Proxy}}" Binding="{Binding TotalText}" Width="110" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Paid], Source={StaticResource Proxy}}" Binding="{Binding PaidText}" Width="110" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Remaining], Source={StaticResource Proxy}}" Binding="{Binding RemainingText}" Width="110" /><DataGridTemplateColumn Header="{Binding Data.Loc[Col_Status], Source={StaticResource Proxy}}" Width="150"><DataGridTemplateColumn.CellTemplate><DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="8" Height="8" Margin="0,0,8,0" VerticalAlignment="Center" Fill="{Binding Status, Converter={StaticResource InvoiceStatusBrush}}" />
+                                    <TextBlock Text="{Binding Status, Converter={StaticResource InvoiceStatusText}}" />
+                                </StackPanel></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn></DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="{Binding Loc[Invoices_Empty]}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"
+                               Foreground="{DynamicResource TextMutedBrush}" Visibility="{Binding HasNoInvoices, Converter={StaticResource BoolToVis}}" />
+                </Grid>
+                <Grid Grid.Row="1" Visibility="{Binding IsTabPayments, Converter={StaticResource BoolToVis}}">
+                    <DataGrid Style="{StaticResource PremiumDataGrid}" ItemsSource="{Binding Payments}" RowHeight="46">
+                        <DataGrid.Columns><DataGridTextColumn Header="{Binding Data.Loc[Col_Receipt], Source={StaticResource Proxy}}" Binding="{Binding ReceiptNumber}" Width="150" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Date], Source={StaticResource Proxy}}" Binding="{Binding DateText}" Width="110" /><DataGridTextColumn Header="{Binding Data.Loc[Col_Amount], Source={StaticResource Proxy}}" Binding="{Binding AmountText}" Width="110" /><DataGridTemplateColumn Header="{Binding Data.Loc[Col_Method], Source={StaticResource Proxy}}" Width="130"><DataGridTemplateColumn.CellTemplate><DataTemplate>
+                                <TextBlock Text="{Binding Method, Converter={StaticResource MethodText}}" /></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn><DataGridTextColumn Header="{Binding Data.Loc[Col_Invoice], Source={StaticResource Proxy}}" Binding="{Binding InvoiceText}" Width="150" /></DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="{Binding Loc[Payments_Empty]}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0"
+                               Foreground="{DynamicResource TextMutedBrush}" Visibility="{Binding HasNoPayments, Converter={StaticResource BoolToVis}}" />
+                </Grid>
+                
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

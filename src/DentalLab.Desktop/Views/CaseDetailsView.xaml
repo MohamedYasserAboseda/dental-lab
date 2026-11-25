@@ -1,0 +1,211 @@
+<UserControl x:Class="DentalLab.Desktop.Views.CaseDetailsView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="clr-namespace:DentalLab.Desktop.Views" xmlns:helpers="clr-namespace:DentalLab.Desktop.Helpers" xmlns:controls="clr-namespace:DentalLab.Desktop.Controls" xmlns:vm="clr-namespace:DentalLab.Desktop.ViewModels">
+    <UserControl.Resources>
+        <Style x:Key="InfoLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" /><Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" /><Setter Property="Margin" Value="0,10,0,2" />
+        </Style>
+        <Style x:Key="InfoValue" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" /><Setter Property="Foreground" Value="{DynamicResource TextBrush}" /><Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <!-- header -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <Button Style="{StaticResource IconButton}" Content="{Binding BackGlyph}" Command="{Binding BackCommand}" Margin="0,0,12,0" ToolTip="{Binding Loc[Common_Back]}" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Details.CaseNumber}" FontSize="26" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <Ellipse Width="9" Height="9" Margin="0,0,8,0" VerticalAlignment="Center" Fill="{Binding Details.Status, Converter={StaticResource CaseStatusBrush}}" />
+                        <TextBlock Text="{Binding Details.Status, Converter={StaticResource CaseStatusText}}" Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Loc[Details_Invoiced]}" Foreground="{StaticResource SuccessBrush}" FontWeight="SemiBold" Margin="14,0,0,0"
+                                   Visibility="{Binding IsInvoiced, Converter={StaticResource BoolToVis}}" />
+                        <TextBlock Text="{Binding Loc[Details_Overdue]}" Foreground="{StaticResource DangerBrush}" FontWeight="SemiBold" Margin="14,0,0,0">
+                            <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers>
+                                <DataTrigger Binding="{Binding Details.IsOverdue}" Value="True"><Setter Property="Visibility" Value="Visible" /></DataTrigger>
+                            </Style.Triggers></Style></TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Doc_WorkOrderButton]}" Command="{Binding PrintWorkOrderCommand}" Margin="0,0,10,0" />
+                    <Button Style="{StaticResource GhostButton}" Content="{Binding Loc[Details_CreateInvoice]}" Command="{Binding CreateInvoiceCommand}" Margin="0,0,10,0"
+                            Visibility="{Binding CanInvoice, Converter={StaticResource BoolToVis}}" />
+                    <Button Style="{StaticResource PrimaryButton}" Content="{Binding Loc[Doctors_Edit]}" Command="{Binding EditCommand}"
+                            Visibility="{Binding CanEdit, Converter={StaticResource BoolToVis}}" />
+                </StackPanel>
+            </Grid>
+
+            <!-- workflow -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Steps}">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="1" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Grid Width="36" Height="36" HorizontalAlignment="Center">
+                                        <Ellipse x:Name="Dot" StrokeThickness="2" Stroke="{DynamicResource BorderBrush}" Fill="{DynamicResource BgBrush}" />
+                                        <TextBlock x:Name="Check" Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="{StaticResource NavyBrush}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
+                                        <Ellipse x:Name="Inner" Width="12" Height="12" Fill="{StaticResource GoldBrush}" Visibility="Collapsed" />
+                                    </Grid>
+                                    <TextBlock x:Name="Label" Text="{Binding Text}" FontSize="12" TextAlignment="Center" TextWrapping="Wrap" Margin="4,8,4,0"
+                                               Foreground="{DynamicResource TextMutedBrush}" />
+                                </StackPanel>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsDone}" Value="True">
+                                        <Setter TargetName="Dot" Property="Fill" Value="{StaticResource GoldBrush}" />
+                                        <Setter TargetName="Dot" Property="Stroke" Value="{StaticResource GoldBrush}" />
+                                        <Setter TargetName="Check" Property="Visibility" Value="Visible" />
+                                        <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                        <Setter TargetName="Dot" Property="Stroke" Value="{StaticResource GoldBrush}" />
+                                        <Setter TargetName="Inner" Property="Visibility" Value="Visible" />
+                                        <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                        <Setter TargetName="Label" Property="FontWeight" Value="Bold" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Grid Margin="0,16,0,0" Height="6">
+                        <Border x:Name="ProgressTrack" CornerRadius="3" Background="{DynamicResource BorderBrush}" />
+                        <Border x:Name="ProgressFill" CornerRadius="3" Background="{StaticResource GoldBrush}" Width="0" HorizontalAlignment="Left" />
+                    </Grid>
+
+                    <TextBlock Text="{Binding Loc[Details_Cancelled]}" Foreground="{StaticResource DangerBrush}" FontWeight="SemiBold" Margin="0,14,0,0"
+                               Visibility="{Binding IsCancelled, Converter={StaticResource BoolToVis}}" />
+
+                    <StackPanel Margin="0,16,0,0" Visibility="{Binding HasActions, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="{Binding Loc[Details_MoveTo]}" Foreground="{DynamicResource TextMutedBrush}" FontSize="12" Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding Actions}">
+                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate><DataTemplate>
+                                <Button Style="{StaticResource GhostButton}" Content="{Binding Text}" Margin="0,0,8,8"
+                                        Command="{Binding DataContext.ChangeStatusCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" />
+                            </DataTemplate></ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBox Style="{StaticResource FieldTextBox}" Text="{Binding NoteText, UpdateSourceTrigger=PropertyChanged}" MaxWidth="520" HorizontalAlignment="Left" MinWidth="320" />
+                        <TextBlock Text="{Binding Loc[Details_NoteHint]}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" Margin="2,4,0,0" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding ErrorText}" Foreground="{StaticResource DangerBrush}" Margin="0,10,0,0" TextWrapping="Wrap">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
+                            <DataTrigger Binding="{Binding ErrorText}" Value=""><Setter Property="Visibility" Value="Collapsed" /></DataTrigger>
+                        </Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="1.4*" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+
+                <Border Style="{StaticResource Card}" VerticalAlignment="Top">
+                    <controls:DentalChartControl IsReadOnly="True" MinHeight="440" SelectedTeeth="{Binding Teeth, Mode=OneWay}" />
+                </Border>
+
+                <StackPanel Grid.Column="2">
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Loc[Details_Info]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Doctor]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding Details.DoctorName}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Patient]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding Details.PatientName}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Restoration]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding RestorationText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Material]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding MaterialText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Shade]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding ShadeText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Col_Teeth]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding TeethText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Details_Received]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding ReceivedText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Col_Expected]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding ExpectedText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Details_Delivered]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding DeliveredText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Notes]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding NotesText}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Loc[Details_Financial]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Quantity]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding QuantityText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_UnitPrice]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding UnitPriceText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Details_Subtotal]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding SubtotalText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Discount]}" /><TextBlock Style="{StaticResource InfoValue}" Text="{Binding DiscountText}" />
+                            <TextBlock Style="{StaticResource InfoLabel}" Text="{Binding Loc[Field_Total]}" />
+                            <TextBlock Text="{Binding TotalText}" FontSize="26" FontWeight="Bold" Foreground="{StaticResource GoldBrush}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,16" DataContext="{Binding Attachments}">
+                        <StackPanel>
+                            <Grid>
+                                <TextBlock Text="{Binding Loc[Attach_Title]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" />
+                                <Button HorizontalAlignment="Right" Style="{StaticResource GhostButton}" Height="34" MinWidth="64" FontSize="12" Padding="12,0"
+                                        Content="{Binding Loc[Attach_Add]}" Command="{Binding AddCommand}" />
+                            </Grid>
+                            <TextBlock Text="{Binding StatusText}" FontSize="12" TextWrapping="Wrap" Margin="0,8,0,0" Foreground="{StaticResource SuccessBrush}"
+                                       Visibility="{Binding HasStatus, Converter={StaticResource BoolToVis}}">
+                                <TextBlock.Style><Style TargetType="TextBlock"><Style.Triggers>
+                                    <DataTrigger Binding="{Binding StatusIsError}" Value="True"><Setter Property="Foreground" Value="{StaticResource DangerBrush}" /></DataTrigger>
+                                </Style.Triggers></Style></TextBlock.Style>
+                            </TextBlock>
+                            <Border Background="{DynamicResource BgBrush}" CornerRadius="10" Padding="12" Margin="0,10,0,0" Visibility="{Binding IsConfirmOpen, Converter={StaticResource BoolToVis}}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Loc[Attach_RemoveConfirm]}" Foreground="{DynamicResource TextBrush}" />
+                                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                        <Button Style="{StaticResource PrimaryButton}" Height="32" FontSize="12" Padding="12,0" Content="{Binding Loc[Invoice_Confirm]}" Command="{Binding ConfirmRemoveCommand}" Margin="0,0,8,0" />
+                                        <Button Style="{StaticResource GhostButton}" Height="32" FontSize="12" Padding="12,0" Content="{Binding Loc[Common_Cancel]}" Command="{Binding CancelRemoveCommand}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding Items}" Margin="0,8,0,0">
+                                <ItemsControl.ItemTemplate><DataTemplate>
+                                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Padding="0,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding FileName}" Foreground="{DynamicResource TextBrush}" TextTrimming="CharacterEllipsis" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding KindText}" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource GoldBrush}" />
+                                                    <TextBlock Text="{Binding SizeText}" FontSize="11" Foreground="{DynamicResource TextMutedBrush}" Margin="10,0,0,0" />
+                                                    <TextBlock Text="{Binding DateText}" FontSize="11" Foreground="{DynamicResource TextMutedBrush}" Margin="10,0,0,0" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <Button Style="{StaticResource GhostButton}" Height="30" MinWidth="54" FontSize="11" Padding="9,0" Margin="8,0,0,0"
+                                                        Content="{Binding DataContext.Loc[Attach_Open], RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        Command="{Binding DataContext.OpenCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" />
+                                                <Button Style="{StaticResource GhostButton}" Height="30" MinWidth="54" FontSize="11" Padding="9,0" Margin="6,0,0,0"
+                                                        Content="{Binding DataContext.Loc[Attach_Remove], RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        Command="{Binding DataContext.StartRemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate></ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text="{Binding Loc[Attach_Empty]}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Visibility="{Binding HasNoItems, Converter={StaticResource BoolToVis}}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Loc[Details_History]}" FontSize="16" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" Margin="0,0,0,6" />
+                            <ItemsControl ItemsSource="{Binding History}">
+                                <ItemsControl.ItemTemplate><DataTemplate>
+                                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Padding="0,8">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding From, Converter={StaticResource CaseStatusText}}" Foreground="{DynamicResource TextMutedBrush}" />
+                                                <TextBlock Text="  →  " Foreground="{DynamicResource TextMutedBrush}" />
+                                                <TextBlock Text="{Binding To, Converter={StaticResource CaseStatusText}}" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}" />
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding DateText}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" />
+                                            <TextBlock Text="{Binding Note}" FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate></ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
